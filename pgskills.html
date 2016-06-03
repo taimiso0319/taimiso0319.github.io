@@ -1,32 +1,9 @@
 <html>
-  <head>
+
+<head>
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-    <script>      
-      function init() {      
-        window.addEventListener( "load", function() {
-          var container = document.getElementById("canvasContainer"),
-          canvas1 = document.getElementById("demoCanvas"),
-          queue = null,
-          wait = 300;
-           
-          // ページ読込時にCanvasサイズ設定 
-          setCanvasSize();
-           
-          // リサイズ時にCanvasサイズを再設定 
-          window.addEventListener("resize", function() {
-            clearTimeout( queue );
-            queue = setTimeout(function() {
-              setCanvasSize();
-            }, wait );
-          }, false );
-           
-          // Canvasサイズをコンテナの100%に 
-          function setCanvasSize() {
-            canvas1.width = container.offsetWidth;
-            canvas1.height = container.offsetHeight;
-          }
-        }, false );
-        
+    <script>
+    function draw() {
         var stage = new createjs.Stage("demoCanvas");
         var circle = new createjs.Shape();
         circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
@@ -34,13 +11,14 @@
         circle.y = 100;
         stage.addChild(circle);
         stage.update();
-      }
+    }
     </script>
-  </head>
-  <body onload="init();">
+</head>
+
+<body onload="draw();">
     <div id="canvasContainer">
-      <canvas id="demoCanvas" width="500" height="200"></canvas>
+        <canvas id="demoCanvas" width="500" height="200"></canvas>
     </div>
-  </body>
-  
+</body>
+
 </html>

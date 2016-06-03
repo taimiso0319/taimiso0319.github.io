@@ -1,0 +1,17 @@
+.lightbox {
+	display: none;
+}
+
+.featherlight iframe {
+	width: 100%;
+	height: 100%;
+}
+
+.featherlight-inner{
+	height: 95%;
+}
+
+.featherlight-content {
+	width: 60%;
+	height: 60%;
+}

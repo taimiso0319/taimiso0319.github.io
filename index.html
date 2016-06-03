@@ -2,43 +2,25 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Keisuke Yasuda's Portfolio</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/animate.min.css" type="text/css">
-    <link rel="stylesheet" href="css/featherlight.min.css" type="text/css" title="Featherlight Styles"/>
+    <link rel="stylesheet" href="css/featherlight.min.css" type="text/css" title="Featherlight Styles" />
     <link rel="stylesheet" href="css/creative.css" type="text/css">
-
+    <link rel="stylesheet" type="text/css" href="css/orig.css">
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
     <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
-    <style> .lightbox {display: none; } </style>
-
-    <!-- modal design script -->
-    <script>      
-      function init() {
-        var stage = new createjs.Stage("demoCanvas");
-        var circle = new createjs.Shape();
-        circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
-        circle.x = 100;
-        circle.y = 100;
-        stage.addChild(circle);
-        stage.update();
-      }
-    </script>
-
 </head>
 
 <body id="page-top">
-
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -51,7 +33,6 @@
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Home</a>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -73,7 +54,6 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
     <header>
         <div class="header-content">
             <div class="header-content-inner">
@@ -84,7 +64,6 @@
             </div>
         </div>
     </header>
-
     <section class="bg-primary" id="about">
         <div class="container">
             <div class="row">
@@ -99,7 +78,6 @@
             </div>
         </div>
     </section>
-
     <section id="services">
         <div class="container">
             <div class="row">
@@ -139,7 +117,6 @@
             </div>
         </div>
     </section>
-
     <section class="no-padding" id="portfolio">
         <div class="container-fluid">
             <div class="row no-gutter">
@@ -260,13 +237,11 @@
     </section>
     <!-- modal window -->
     <div class="lightbox" id="pgskills">
-        <iframe src="pgskills.html"></iframe>
-    </div>    
-
+        <iframe id="iframe" src="pgskills.html"></iframe>
+    </div>
     <div class="lightbox" id="archives">
         test
     </div>
-
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.easing.min.js"></script>
@@ -274,7 +249,36 @@
     <script src="js/wow.min.js"></script>
     <script src="js/creative.js"></script>
     <script src="js/featherlight.min.js"></script>
+        <script type="text/javascript">
+    window.addEventListener("load", function() {
+        console.log(document.getElementById("iframe"));
+        var container = document.getElementById("iframe").contentWindow.document.getElementById("canvasContainer"),
+            canvas1 = document.getElementById("iframe").contentWindow.document.getElementById("demoCanvas"),
+            queue = null,
+            wait = 300;
 
+        // ページ読込時にCanvasサイズ設定 
+        setCanvasSize();
+
+        // リサイズ時にCanvasサイズを再設定 
+        window.addEventListener("resize", function() {
+            console.log("test");
+            clearTimeout(queue);
+            queue = setTimeout(function() {
+                setCanvasSize();
+            }, wait);
+        }, false);
+
+        window.onresize = function() {
+                console.log("aaa");
+            }
+            // Canvasサイズをコンテナの100%に 
+        function setCanvasSize() {
+            canvas1.width = container.offsetWidth;
+            canvas1.height = container.offsetHeight;
+        }
+    }, false);
+    </script>
 </body>
 
 </html>
