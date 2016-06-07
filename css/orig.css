@@ -1,17 +1,69 @@
-.lightbox {
+.modalwindow {
+	position: fixed;
 	display: none;
+	width: 50%;
+	height: 80%;
+	background-color: white;
+	top: 50%;
+	left: 50%;
+	margin-top: 0px;
+	margin-left: 0px;
 }
 
-.featherlight iframe {
-	width: 100%;
+.background{
+	position: fixed;
+	display: none;
 	height: 100%;
+	width: 100%;
+	background-color: black;
+	top: 50%;
+	left: 50%;
+	margin-top: 0px;
+	margin-left: 0px;
+	opacity: 0.3;
 }
 
-.featherlight-inner{
-	height: 95%;
+.container-fluid{
+	background-color: #1ab380;
 }
 
-.featherlight-content {
-	width: 60%;
-	height: 60%;
+.bg-primary{
+	background-color: #1ab380;
+}
+
+.navbar-default{
+	border-color: #1ab380;
+}
+
+.btn-primary{
+	background-color: #1ab380;
+}
+
+.btn-primary:hover{
+	background-color: #008c6c;
+}
+
+.text-primary{
+	color: #1ab380;
+}
+
+.portfolio-box .portfolio-box-caption {
+	background: #1ab380;
+}
+
+.fa-twitter{
+	color: #00aced;
+}
+
+a{
+	color: #1ab380;
+}
+
+a:hover{
+	color: #008c6c;
+
+}
+
+hr{
+	border-color: #1ab380;
 }

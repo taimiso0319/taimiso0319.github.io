@@ -4,7 +4,7 @@
     <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
     <script>
     function draw() {
-        var stage = new createjs.Stage("demoCanvas");
+        var stage = new createjs.Stage("SkillCanvas");
         var circle = new createjs.Shape();
         circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
         circle.x = 100;
@@ -17,8 +17,40 @@
 
 <body onload="draw();">
     <div id="canvasContainer">
-        <canvas id="demoCanvas" width="500" height="200"></canvas>
+        <canvas id="SkillCanvas" width="500" height="200"></canvas>
     </div>
 </body>
+
+        <script type="text/javascript">
+    window.addEventListener("load", function() {
+                    console.log(document.getElementsByClassName("featherlight-content"));
+        var container = document.getElementById("skilliframe").contentWindow.document.getElementById("canvasContainer"),
+            canvas1 = document.getElementById("skilliframe").contentWindow.document.getElementById("SkillCanvas"),
+            queue = null,
+            wait = 300;
+
+        // ページ読込時にCanvasサイズ設定 
+        setCanvasSize();
+
+        // リサイズ時にCanvasサイズを再設定 
+        window.addEventListener("resize", function() {
+            clearTimeout(queue);
+            queue = setTimeout(function() {
+                setCanvasSize();
+            }, wait);
+        }, false);
+
+        window.onresize = function() {
+            setCanvasSize();
+        }
+            // Canvasサイズをコンテナの100%に 
+        function setCanvasSize() {
+            console.log(container.offsetWidth);
+            console.log(container.offsetHeight);
+            canvas1.width = container.offsetWidth;
+            canvas1.height = container.offsetHeight;
+        }
+    }, false);
+    </script>
 
 </html>

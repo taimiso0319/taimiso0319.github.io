@@ -5,19 +5,70 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <title>Keisuke Yasuda's Portfolio</title>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/animate.min.css" type="text/css">
-    <link rel="stylesheet" href="css/featherlight.min.css" type="text/css" title="Featherlight Styles" />
     <link rel="stylesheet" href="css/creative.css" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/orig.css">
     <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
     <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/creative.js"></script>
+    <script type="text/javascript">
+    function backgroundCenterize(){
+        b_left = $('.background').width() / 2;
+        b_top = $('.background').height() / 2;
+        $('.background').css({ 
+            'margin-left': -b_left,
+            'margin-top': -b_top
+        });
+    }
+    function windowResize(){
+        m_left = $('.modalwindow').width() / 2;
+        m_top = $('.modalwindow').height() / 2;
+        $('.modalwindow').animate({ 
+            'margin-left': -m_left,
+            'margin-top': -m_top
+        }, 100, 'easeOutQuart');
+    }
+    function draw() {
+        var stage = new createjs.Stage("SkillCanvas");
+        var circle = new createjs.Shape();
+        circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
+        circle.x = 100;
+        circle.y = 100;
+        stage.addChild(circle);
+        stage.update();
+    }
+    $(function() {
+        draw();
+        $('.pgskills').click( function() {
+            backgroundCenterize();
+            windowResize();
+            $('.background').fadeIn();
+            $('.modalwindow').fadeIn();
+        });
+        console.log($('.btn-default'));
+        $('.background').click( function(){
+            $('.background').fadeOut();
+            $('.modalwindow').fadeOut();
+        });
+    });
+    $(window).resize( function() {
+        backgroundCenterize();
+        windowResize();
+        console.log($('.modalwindow').width());
+        // console.log($('.modalwindow').css('margin-left'));
+    });
+        
+    </script>
 </head>
 
 <body id="page-top">
@@ -93,14 +144,14 @@
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond wow bounceIn text-primary"></i>
                         <h3>Programming Skills</h3>
-                        <a class="btn btn-default" href="#" data-featherlight="#pgskills">Click here to open!</a>
+                        <div class="btn btn-default pgskills">Click here to open!</div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
                         <h3>Achievements</h3>
-                        <a class="btn btn-default" href="#" data-featherlight="#archives">Click here to open!</a>
+                        <a class="btn btn-default" href="#">Click here to open!</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 text-center">
@@ -236,49 +287,10 @@
         </div>
     </section>
     <!-- modal window -->
-    <div class="lightbox" id="pgskills">
-        <iframe id="iframe" src="pgskills.html"></iframe>
+    <div class="background"></div>
+    <div class="modalwindow">
+        <canvas id="SkillCanvas"></canvas>
     </div>
-    <div class="lightbox" id="archives">
-        test
-    </div>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/jquery.fittext.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/creative.js"></script>
-    <script src="js/featherlight.min.js"></script>
-        <script type="text/javascript">
-    window.addEventListener("load", function() {
-        console.log(document.getElementById("iframe"));
-        var container = document.getElementById("iframe").contentWindow.document.getElementById("canvasContainer"),
-            canvas1 = document.getElementById("iframe").contentWindow.document.getElementById("demoCanvas"),
-            queue = null,
-            wait = 300;
-
-        // ページ読込時にCanvasサイズ設定 
-        setCanvasSize();
-
-        // リサイズ時にCanvasサイズを再設定 
-        window.addEventListener("resize", function() {
-            console.log("test");
-            clearTimeout(queue);
-            queue = setTimeout(function() {
-                setCanvasSize();
-            }, wait);
-        }, false);
-
-        window.onresize = function() {
-                console.log("aaa");
-            }
-            // Canvasサイズをコンテナの100%に 
-        function setCanvasSize() {
-            canvas1.width = container.offsetWidth;
-            canvas1.height = container.offsetHeight;
-        }
-    }, false);
-    </script>
 </body>
 
 </html>
